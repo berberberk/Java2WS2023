@@ -27,15 +27,6 @@ public class GenericArrayHolder<T> {
             throw new IndexOutOfBoundsException("Индекс за пределами массива");
         }
     }
-    /*public List<T> toList() {
-        List<T> list = new ArrayList<>(Arrays.asList(array));
-        System.out.println("Массив конвертирован в список! Вот его первые элементы:");
-        for (int i = 0; i < Math.min(5, list.size()); i++) {
-            System.out.println(list.get(i));
-        }
-        return list;
-    }
-    */
 
     public static void main(String[] args) {
         Integer[] intArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};

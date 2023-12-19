@@ -1,6 +1,7 @@
 package restaurant.orders;
 
 import restaurant.menuitems.Item;
+import restaurant.exceptions.*;
 
 public class RestaurantOrdersManager implements OrdersManager {
     Order[] orders;
@@ -59,19 +60,27 @@ public class RestaurantOrdersManager implements OrdersManager {
      *
      * @param order       Заказ.
      * @param tableNumber Номер стола.
+     * @throws IllegalTableNumber При выборе несуществующего столика
+     * @throws OrderAlreadyAddedException При выборе столика, к которому уже привязан заказ
      */
-    public void add(Order order, int tableNumber){
+    public void add(Order order, int tableNumber) throws IllegalTableNumber, OrderAlreadyAddedException {
+        if (tableNumber < 1 || tableNumber > 15) throw new IllegalTableNumber("Столик с таким номером недоступен");
         if (orders[tableNumber] == null) {
             orders[tableNumber] = order;
+        } else {
+            throw new OrderAlreadyAddedException("К указанному столику уже привязан заказ");
         }
     }
 
-    public void addItem(Item item, int tableNumber) {
+    public void addItem(Item item, int tableNumber) throws OrderAlreadyAddedException {
         if (orders[tableNumber] == null) {
             orders[tableNumber] = new RestaurantOrder();
             orders[tableNumber].add(item);
+        } else {
+            throw new OrderAlreadyAddedException("К указанному столику уже привязан заказ");
         }
     }
+
 
     /**
      * Возвращает номер первого свободного стола.
@@ -109,8 +118,10 @@ public class RestaurantOrdersManager implements OrdersManager {
      *
      * @param tableNumber Номер стола.
      * @return Заказ для указанного стола или null, если стол пуст.
+     * @throws IllegalTableNumber При указании несуществуюшего номера столика
      */
-    public Order getOrder(int tableNumber) {
+    public Order getOrder(int tableNumber) throws IllegalTableNumber {
+        if (tableNumber < 1 || tableNumber > 15) throw new IllegalTableNumber("Столик с таким номером недоступен");
         return orders[tableNumber];
     }
 
@@ -118,8 +129,10 @@ public class RestaurantOrdersManager implements OrdersManager {
      * Удаляет заказ с указанного стола.
      *
      * @param tableNumber Номер стола.
+     * @throws IllegalTableNumber При указании несуществуюшего номера столика
      */
-    public void remove(int tableNumber){
+    public void remove(int tableNumber) throws IllegalTableNumber {
+        if (tableNumber < 1 || tableNumber > 15) throw new IllegalTableNumber("Столик с таким номером недоступен");
         orders[tableNumber] = null;
     }
 

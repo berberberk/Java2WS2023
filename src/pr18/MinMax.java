@@ -13,7 +13,6 @@ public class MinMax<T extends Comparable<T>> {
         if (array == null || array.length == 0) {
             return null;
         }
-
         T min = array[0];
         for (int i = 1; i < array.length; i++) {
             if (array[i].compareTo(min) < 0) {

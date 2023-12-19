@@ -2,17 +2,17 @@ package pr22.chair;
 
 public class ChairFactory implements AbstractChairFactory {
     @Override
-    public VictorianChair createVictorianChair(int age) {
-        return new VictorianChair(age);
+    public Chair.VictorianChair createVictorianChair(int age) {
+        return new Chair.VictorianChair(age);
     }
 
     @Override
-    public FunctionalChair createFunctionalChair() {
-        return new FunctionalChair();
+    public Chair.FunctionalChair createFunctionalChair() {
+        return new Chair.FunctionalChair();
     }
 
     @Override
-    public MagicChair createMagicChair() {
-        return new MagicChair();
+    public Chair.MagicChair createMagicChair() {
+        return new Chair.MagicChair();
     }
 }

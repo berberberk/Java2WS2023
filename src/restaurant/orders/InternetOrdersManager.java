@@ -1,33 +1,44 @@
 package restaurant.orders;
 
+import restaurant.customer.Customer;
 import restaurant.menuitems.Item;
+import java.util.HashMap;
+import restaurant.exceptions.OrderAlreadyAddedException;
 
 public class InternetOrdersManager implements OrdersManager {
     private int allCost = 0;
     QueueNode head;
     QueueNode tail;
     int size;
+    HashMap<Customer, Order> orders = new HashMap<Customer, Order>();
 
-    public void add(Order order) {
+    public void add(Order order) throws OrderAlreadyAddedException{
         if (order == null) {
             return;
         }
-        allCost += order.costTotal();
-        if (size == 0) {
-            head = new QueueNode(null, order, null);
-            tail = head;
-        } else {
-            QueueNode secondLast = tail;
-            tail = new QueueNode(secondLast, order, null);
-            secondLast.next = tail;
+        else if (!orders.isEmpty() && orders.containsKey(order.getCustomer()) && orders.get(order.getCustomer()) == order) {
+            throw new OrderAlreadyAddedException("К указанному покупателю уже привязан заказ");
         }
-        size++;
+        else {
+            orders.put(order.getCustomer(), order);
+            allCost += order.costTotal();
+            if (size == 0) {
+                head = new QueueNode(null, order, null);
+                tail = head;
+            } else {
+                QueueNode secondLast = tail;
+                tail = new QueueNode(secondLast, order, null);
+                secondLast.next = tail;
+            }
+            size++;
+        }
     }
 
     Order remove() {
         Order removable = head.value;
         head = head.next;
         head.prev = null;
+        orders.remove(removable.getCustomer());
         return removable;
     }
 

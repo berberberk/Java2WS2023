@@ -79,7 +79,6 @@ public class INNValidator {
                 && controlNumber2 == Character.getNumericValue(inn.charAt(11));
     }
 
-
     /**
      * Вычисляет контрольное число для заданной части ИНН и весовых коэффициентов.
      *

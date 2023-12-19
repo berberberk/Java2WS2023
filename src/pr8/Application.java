@@ -94,7 +94,7 @@ public class Application extends JFrame {
                             (int) (Math.random() * WINDOW_HEIGHT)
                     );
                 }
-                // Арка
+                // Дуга
                 case 4 -> {
                     g.setColor(new Color((int) (Math.random() * 0x1000000)));
                     g.drawArc(

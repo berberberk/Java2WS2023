@@ -1,16 +1,15 @@
 package pr21;
-
 public class ArrayQueueModule {
 
     private static int size = 0;
     private static int head = 0;
-    static int a = 5;
-    static int b = 6;
-    static int c = 7;
-    static int d = 8;
-    static int e = 9;
-    static int f = 10;
-    static int g = 11;
+    private static int a = 5;
+    private static int b = 6;
+    private static int c = 7;
+    private static int d = 8;
+    private static int e = 9;
+    private static int f = 10;
+    private static int g = 11;
 
     private static Object[] elements = {a, b, c, d, e, f, g};
 

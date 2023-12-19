@@ -1,9 +1,9 @@
 package pr22.chair;
 
 public interface AbstractChairFactory {
-    VictorianChair createVictorianChair(int age);
+    Chair.VictorianChair createVictorianChair(int age);
 
-    FunctionalChair createFunctionalChair();
+    Chair.FunctionalChair createFunctionalChair();
 
-    MagicChair createMagicChair();
+    Chair.MagicChair createMagicChair();
 }
